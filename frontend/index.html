@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Next Trip Finder</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Next Trip Finder</h1>
+    <p>Busca vuelos baratos por rango de fechas y franja horaria, no por un día fijo.</p>
+  </header>
+
+  <main>
+    <form id="search-form">
+      <fieldset>
+        <legend>Origen y destino</legend>
+        <div class="field">
+          <label for="origin">Origen (código IATA)</label>
+          <input type="text" id="origin" name="origin" placeholder="MAD" required maxlength="4" />
+        </div>
+        <div class="field">
+          <label for="destinations">Destinos (códigos IATA separados por coma; vacío = explora una selección de destinos europeos populares)</label>
+          <input type="text" id="destinations" name="destinations" placeholder="BCN, LIS, ROM" />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Rango de fechas</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="outbound_date_from">Ida desde</label>
+            <input type="date" id="outbound_date_from" name="outbound_date_from" required />
+          </div>
+          <div class="field">
+            <label for="outbound_date_to">Ida hasta</label>
+            <input type="date" id="outbound_date_to" name="outbound_date_to" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="return_date_from">Vuelta desde</label>
+            <input type="date" id="return_date_from" name="return_date_from" required />
+          </div>
+          <div class="field">
+            <label for="return_date_to">Vuelta hasta</label>
+            <input type="date" id="return_date_to" name="return_date_to" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="min_nights">Duración mínima (noches)</label>
+            <input type="number" id="min_nights" name="min_nights" min="0" max="365" />
+          </div>
+          <div class="field">
+            <label for="max_nights">Duración máxima (noches)</label>
+            <input type="number" id="max_nights" name="max_nights" min="0" max="365" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Franjas horarias de salida (opcional)</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="outbound_time_from">Ida: salida desde</label>
+            <input type="time" id="outbound_time_from" name="outbound_time_from" />
+          </div>
+          <div class="field">
+            <label for="outbound_time_to">Ida: salida hasta</label>
+            <input type="time" id="outbound_time_to" name="outbound_time_to" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="return_time_from">Vuelta: salida desde</label>
+            <input type="time" id="return_time_from" name="return_time_from" />
+          </div>
+          <div class="field">
+            <label for="return_time_to">Vuelta: salida hasta</label>
+            <input type="time" id="return_time_to" name="return_time_to" />
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Otros</legend>
+        <div class="field-row">
+          <div class="field">
+            <label for="currency">Moneda</label>
+            <select id="currency" name="currency">
+              <option value="EUR" selected>EUR</option>
+              <option value="USD">USD</option>
+              <option value="GBP">GBP</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="max_results">Resultados máximos</label>
+            <input type="number" id="max_results" name="max_results" min="1" max="200" value="50" />
+          </div>
+        </div>
+      </fieldset>
+
+      <button type="submit" id="submit-btn">Buscar vuelos</button>
+    </form>
+
+    <section id="status" aria-live="polite"></section>
+
+    <section id="results"></section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
